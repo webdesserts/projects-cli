@@ -1,0 +1,13 @@
+[package]
+name = "projects"
+version = "0.1.0"
+authors = ["Michael Mullins <michael@webdesserts.com>"]
+edition = "2018"
+
+[dependencies]
+structopt = "^0.2"
+serde = { version = "^1", features = ["derive"] }
+failure = "^0.1"
+exitfailure = "^0.5"
+confy = { path = "../confy" }
+skim = "^0.6"
