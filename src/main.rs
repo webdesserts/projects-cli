@@ -15,7 +15,7 @@ static APP_NAME: &str = "projects";
 
 /// Manages a list of projects throughout your file system
 #[derive(StructOpt)]
-#[structopt(name = "x")]
+#[structopt(name = "p")]
 struct App {
     #[structopt(subcommand)]
     cmd: Option<Command>
