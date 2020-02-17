@@ -14,7 +14,7 @@ use exitfailure::ExitFailure;
 #[structopt(name = "projects-cli")]
 struct App {
     #[structopt(subcommand)]
-    cmd: Option<Command>
+    cmd: Command
 }
 
 #[derive(StructOpt)]
@@ -52,12 +52,11 @@ fn main() -> Result<(), ExitFailure> {
     let config = config::load()?;
     let app = App::from_args();
     match app.cmd  {
-        Some(Command::Track{path}) => commands::track(path, config)?,
-        Some(Command::Remove{path}) => commands::remove(path, config)?,
-        Some(Command::List{paths}) => commands::list(paths, config)?,
-        Some(Command::Init{shell}) => commands::init(shell)?,
-        Some(Command::Select) => commands::select(config)?,
-        None => commands::select(config)?
+        Command::Track{path} => commands::track(path, config)?,
+        Command::Remove{path} => commands::remove(path, config)?,
+        Command::List{paths} => commands::list(paths, config)?,
+        Command::Select => commands::select(config)?,
+        Command::Init{shell} => commands::init(shell)?,
     };
     Ok(())
 }
