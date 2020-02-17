@@ -59,7 +59,7 @@ impl Default for Config {
 }
 
 fn main() -> Result<(), ExitFailure> {
-    let config: Config = confy::load(APP_NAME)?;
+    let config: Config = webdesserts_confy::load(APP_NAME)?;
     let app = App::from_args();
     match app.cmd  {
         Some(Command::Track{path}) => track_path(path, config)?,
@@ -82,7 +82,7 @@ fn track_path(path: PathBuf, mut config: Config) -> Result<(), failure::Error> {
     } else {
         println!("Already tracking {:?}", full_path);
     }
-    confy::store(APP_NAME, config)?;
+    webdesserts_confy::store(APP_NAME, config)?;
     Ok(())
 }
 
@@ -91,7 +91,7 @@ fn remove_path(path: PathBuf, mut config: Config) -> Result<(), failure::Error> 
     let removed = config.paths.remove(&full_path);
     if removed {
         println!("No longer tracking {:?}", full_path);
-        confy::store(APP_NAME, config)?;
+        webdesserts_confy::store(APP_NAME, config)?;
     } else {
         println!("Not currently tracking {:?}", full_path);
     }
