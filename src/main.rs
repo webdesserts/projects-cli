@@ -165,6 +165,7 @@ fn select_project(config: Config) -> Result<(), Error> {
     Ok(())
 }
 
+#[derive(PartialEq, Eq, PartialOrd, Ord)]
 struct ProjectDetails {
     path: PathBuf,
     name: String
@@ -178,6 +179,7 @@ fn get_project_names (projects: HashSet<PathBuf>) -> Vec<ProjectDetails> {
             project_names.push(ProjectDetails { path, name });
         }
     };
+    project_names.sort();
     return project_names
 }
 
