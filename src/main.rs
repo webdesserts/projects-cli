@@ -19,7 +19,7 @@ struct App {
 
 #[derive(StructOpt)]
 enum Command {
-    /// Track projects in the given directory, and add them to the search
+    /// Track projects in the given directory
     #[structopt(name = "track")]
     Track {
         #[structopt(parse(from_os_str), default_value = ".")]
@@ -31,17 +31,18 @@ enum Command {
         #[structopt(parse(from_os_str), default_value = ".")]
         path: PathBuf,
     },
-    /// Displays the list of saved paths expedite watches
+    /// Displays the current list of tracked directories
     #[structopt(name = "list")]
     List {
         #[structopt(long = "paths")]
         paths: bool
     },
-    #[structopt(name = "init",)]
+    /// Prints a shell script that can be used to enable jumping to project directories
+    #[structopt(name = "init")]
     Init {
         #[structopt(default_value = "bash")]
         shell: commands::Shells
-    }
+    },
 }
 
 fn main() -> Result<(), ExitFailure> {
