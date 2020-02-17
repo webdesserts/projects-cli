@@ -5,8 +5,8 @@ mod config;
 #[macro_use] extern crate serde;
 #[macro_use] extern crate failure;
 
-use structopt::StructOpt;
 use std::path::{PathBuf};
+use structopt::StructOpt;
 use exitfailure::ExitFailure;
 
 /// Manages a list of projects throughout your file system
@@ -36,6 +36,11 @@ enum Command {
     List {
         #[structopt(long = "paths")]
         paths: bool
+    },
+    #[structopt(name = "init",)]
+    Init {
+        #[structopt(default_value = "bash")]
+        shell: commands::Shells
     }
 }
 
@@ -46,6 +51,7 @@ fn main() -> Result<(), ExitFailure> {
         Some(Command::Track{path}) => commands::track(path, config)?,
         Some(Command::Remove{path}) => commands::remove(path, config)?,
         Some(Command::List{paths}) => commands::list(paths, config)?,
+        Some(Command::Init{shell}) => commands::init(shell)?,
         None => commands::select(config)?
     };
     Ok(())
