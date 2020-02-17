@@ -6,3 +6,5 @@ projects() {
     eval "projects $@";
   fi
 }
+
+alias p = projects
