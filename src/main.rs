@@ -37,6 +37,9 @@ enum Command {
         #[structopt(long = "paths")]
         paths: bool
     },
+    /// Displays searchable menu of all projects. Will return the selected project's path
+    #[structopt(name = "select")]
+    Select,
     /// Prints a shell script that can be used to enable jumping to project directories
     #[structopt(name = "init")]
     Init {
@@ -53,6 +56,7 @@ fn main() -> Result<(), ExitFailure> {
         Some(Command::Remove{path}) => commands::remove(path, config)?,
         Some(Command::List{paths}) => commands::list(paths, config)?,
         Some(Command::Init{shell}) => commands::init(shell)?,
+        Some(Command::Select) => commands::select(config)?,
         None => commands::select(config)?
     };
     Ok(())
