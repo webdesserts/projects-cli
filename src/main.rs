@@ -11,7 +11,7 @@ use exitfailure::ExitFailure;
 
 /// Manages a list of projects throughout your file system
 #[derive(StructOpt)]
-#[structopt(name = "p")]
+#[structopt(name = "projects-cli")]
 struct App {
     #[structopt(subcommand)]
     cmd: Option<Command>
