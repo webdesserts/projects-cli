@@ -425,7 +425,7 @@ dependencies = [
 
 [[package]]
 name = "projects"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "exitfailure 0.5.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "failure 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",

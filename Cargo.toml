@@ -1,7 +1,11 @@
 [package]
 name = "projects"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Michael Mullins <michael@webdesserts.com>"]
+description = "A tool for tracking, searching for, and jumping to your projects."
+repository = "https://github.com/webdesserts/projects-cli.git"
+website = "https://github.com/webdesserts/projects-cli"
+license = "MIT"
 edition = "2018"
 
 [dependencies]
