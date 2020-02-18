@@ -1,10 +1,10 @@
 projects() {
   if [ -z "$@" ]; then
-    local project=$(projects select)
-    [[ ! -z "$project" ]] && cd $project
+    local project=$(PROJECT_CLI_PATH select);
+    [[ ! -z "$project" ]] && cd "$project";
   else
-    eval "projects $@";
+    eval "PROJECT_CLI_PATH $@";
   fi
-}
+};
 
-alias p = projects
+alias p="projects"
