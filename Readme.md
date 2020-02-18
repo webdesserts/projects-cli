@@ -26,3 +26,9 @@ projects list
 If you have the `projects init` script installed, you can then jump straight to your project's directory by just calling `projects`, which will bring up a searchable list of all your projects.
 
 `projects` will also be aliased to `p` so you can jump to your projects quickly.
+
+## Credits
+
+The **projects-cli** is based on the [equis](https://github.com/danthegoodman/equis) library by [danthegoodman](https://github.com/danthegoodman). Equis is a much more robust solution with a lot of good features, definitely feel free to check it out! My goal for `projects` was to make a make a version of equis that was just focused on jumping directories while also reducing the number of steps and dependencies needed to get everything set up.
+
+Also, big thanks to [starship](https://starship.rs) for being the inspiration behind the `projects init` script. It brought the setup _ux_ to a level I was finally happy with.
