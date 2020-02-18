@@ -12,7 +12,7 @@ If you want the ability to cd directly into your projects, you'll also want to a
 ```
 eval "$(projects init bash)"
 ```
-Once you have everything set up, you can track a project directory by using `projects track`
+Once you have everything set up, you can track projects in a given directory by using `projects track`
 ```
 projects track ~/code 
 ```
