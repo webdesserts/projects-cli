@@ -6,7 +6,7 @@ A tool for tracking, searching for, and jumping to your projects.
 
 First, you'll want to install the binary.
 ```
-cargo install projects-cli
+cargo install projects
 ```
 If you want the ability to cd directly into your projects, you'll also want to add the init script to your `.bashrc`.
 ```
