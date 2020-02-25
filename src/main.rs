@@ -28,8 +28,8 @@ enum Command {
     /// Stop tracking projects in the given directory
     #[structopt(name = "remove")]
     Remove {
-        #[structopt(parse(from_os_str), default_value = ".")]
-        path: PathBuf,
+        #[structopt(parse(from_os_str))]
+        path: Option<PathBuf>,
     },
     /// Displays the current list of tracked directories
     #[structopt(name = "list")]

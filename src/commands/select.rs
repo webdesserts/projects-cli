@@ -2,14 +2,14 @@ use std::io::Cursor;
 use std::path::{PathBuf, Path};
 use failure::{Error};
 use skim::{SkimOptionsBuilder, Skim};
-use crate::config::{Config, ProjectSet};
+use crate::config::{Config};
 use crate::commands::list::{list_projects};
 
 pub fn select(config: Config) -> Result<(), Error> {
     if config.paths.is_empty() {
         bail!("You haven't configured any paths yet! Use the \"add\" command to add some.");
     }
-    let projects = get_project_names(list_projects(config)?);
+    let projects = get_project_details(&config)?;
     if projects.is_empty() {
         bail!("Your configured paths are currently empty. Try adding some projects to them");
     }
@@ -34,12 +34,13 @@ pub fn select(config: Config) -> Result<(), Error> {
 }
 
 #[derive(PartialEq, Eq, PartialOrd, Ord)]
-struct ProjectDetails {
-    path: PathBuf,
-    name: String
+pub struct ProjectDetails {
+    pub name: String,
+    pub path: PathBuf,
 }
 
-fn get_project_names (projects: ProjectSet) -> Vec<ProjectDetails> {
+pub fn get_project_details(config: &Config) -> Result<Vec<ProjectDetails>, failure::Error> {
+    let projects = list_projects(config)?;
     let mut project_names = Vec::new();
     for path in projects {
         let file_name = get_file_name(&path);
@@ -48,7 +49,7 @@ fn get_project_names (projects: ProjectSet) -> Vec<ProjectDetails> {
         }
     };
     project_names.sort();
-    return project_names
+    return Ok(project_names)
 }
 
 fn get_file_name<P: AsRef<Path>>(path: P) -> Option<String> {
