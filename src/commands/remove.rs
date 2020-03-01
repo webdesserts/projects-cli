@@ -26,9 +26,9 @@ pub fn remove(path: Option<PathBuf>, mut config: Config) -> Result<(), failure::
  */
 pub fn select_root(config: &Config) -> Result<PathBuf, failure::Error> {
     let rootset = list_roots(config)?;
-    let roots: Vec<&PathBuf> = rootset.iter().collect();
-    let mut path_strings: Vec<&str> = roots.iter().map(|root| root.to_str().unwrap()).collect();
-    path_strings.sort();
+    let mut roots: Vec<&PathBuf> = rootset.iter().collect();
+    roots.sort();
+    let path_strings: Vec<&str> = roots.iter().map(|root| root.to_str().unwrap()).collect();
     let mut selector = Select::new();
     selector.items(&path_strings);
     selector.default(0);
