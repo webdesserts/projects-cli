@@ -25,11 +25,12 @@ enum Command {
         #[structopt(parse(from_os_str), default_value = ".")]
         path: PathBuf,
     },
-    /// Stop tracking projects in the given directory
+    /// Stops tracking projects in the given directory
     #[structopt(name = "remove")]
     Remove {
-        #[structopt(parse(from_os_str), default_value = ".")]
-        path: PathBuf,
+        #[structopt(parse(from_os_str))]
+         /// The path to stop tracking. If no path is passed, we'll display a list or track directories to select from.
+        path: Option<PathBuf>,
     },
     /// Displays the current list of tracked directories
     #[structopt(name = "list")]

@@ -4,12 +4,12 @@ use webdesserts_confy as confy;
 
 static APP_NAME: &str = "projects";
 
-pub type ProjectSet = HashSet<PathBuf>;
+pub type ProjectRootSet = HashSet<PathBuf>;
 
 #[derive(Serialize, Deserialize)]
 pub struct Config {
     pub version: u8,
-    pub paths: ProjectSet
+    pub paths: ProjectRootSet
 }
 
 impl Config {
@@ -22,7 +22,7 @@ impl Default for Config {
     fn default() -> Self {
         Self {
             version: 0,
-            paths: ProjectSet::new()
+            paths: ProjectRootSet::new()
         }
     }
 }
