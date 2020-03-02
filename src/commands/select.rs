@@ -15,7 +15,7 @@ pub fn select(config: Config) -> Result<(), Error> {
     }
     let names: Vec<String> = projects
         .iter()
-        .map(|project| format!("{} – {}", project.name, project.path.to_str().unwrap()))
+        .map(|project| format!("{} – {}", project.name, project.path.display()))
         .collect();
     let input = names.join("\n");
     let options = SkimOptionsBuilder::default()
@@ -29,9 +29,8 @@ pub fn select(config: Config) -> Result<(), Error> {
         .unwrap_or_else(|| Vec::new());
 
     for item in selected_items.iter() {
-        if let Some(path) = projects[item.get_index()].path.to_str() {
-            println!("{}", path);
-        }
+        let path = &projects[item.get_index()].path;
+        println!("{}", path.display());
     }
     Ok(())
 }

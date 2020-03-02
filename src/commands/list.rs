@@ -11,10 +11,8 @@ pub fn list(paths: bool, config: Config) -> Result<(), Error> {
     };
     let sorted_paths = utils::sort_set(paths);
     for path in sorted_paths {
-        if let Some(string) = path.to_str() {
-            println!("{}", string)
-        }
-    }
+        println!("{}", path.display());
+    };
     Ok(())
 }
 

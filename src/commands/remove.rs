@@ -38,7 +38,9 @@ pub fn select_root(config: &Config) -> Result<PathBuf, failure::Error> {
     println!("");
     let rootset = list_roots(config)?;
     let roots = utils::sort_set(rootset);
-    let path_strings: Vec<&str> = roots.iter().map(|root| root.to_str().unwrap()).collect();
+    let path_strings: Vec<String> = roots.iter().map(|root| {
+        format!("{}", root.display())
+    }).collect();
 
     let mut selector = dialoguer::Select::new();
     selector.items(&path_strings);
