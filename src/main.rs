@@ -1,20 +1,22 @@
-mod utils;
 mod commands;
 mod config;
+mod utils;
 
-#[macro_use] extern crate serde;
-#[macro_use] extern crate failure;
+#[macro_use]
+extern crate serde;
+#[macro_use]
+extern crate failure;
 
-use std::path::{PathBuf};
-use structopt::StructOpt;
 use exitfailure::ExitFailure;
+use std::path::PathBuf;
+use structopt::StructOpt;
 
 /// Manages a list of projects throughout your file system
 #[derive(StructOpt)]
 #[structopt(name = "projects-cli")]
 struct App {
     #[structopt(subcommand)]
-    cmd: Command
+    cmd: Command,
 }
 
 #[derive(StructOpt)]
@@ -29,14 +31,14 @@ enum Command {
     #[structopt(name = "remove")]
     Remove {
         #[structopt(parse(from_os_str))]
-         /// The path to stop tracking. If no path is passed, we'll display a list or track directories to select from.
+        /// The path to stop tracking. If no path is passed, we'll display a list or track directories to select from.
         path: Option<PathBuf>,
     },
     /// Displays the current list of tracked directories
     #[structopt(name = "list")]
     List {
         #[structopt(long = "paths")]
-        paths: bool
+        paths: bool,
     },
     /// Displays searchable menu of all projects. Will return the selected project's path
     #[structopt(name = "select")]
@@ -45,7 +47,7 @@ enum Command {
     #[structopt(name = "init")]
     Init {
         #[structopt(default_value = "bash")]
-        shell: commands::Shells
+        shell: commands::Shells,
     },
 }
 
@@ -53,12 +55,12 @@ fn main() -> Result<(), ExitFailure> {
     let config = config::load()?;
     let app = App::from_args();
     eprintln!("");
-    match app.cmd  {
-        Command::Track{path} => commands::track(path, config)?,
-        Command::Remove{path} => commands::remove(path, config)?,
-        Command::List{paths} => commands::list(paths, config)?,
+    match app.cmd {
+        Command::Track { path } => commands::track(path, config)?,
+        Command::Remove { path } => commands::remove(path, config)?,
+        Command::List { paths } => commands::list(paths, config)?,
         Command::Select => commands::select(config)?,
-        Command::Init{shell} => commands::init(shell)?,
+        Command::Init { shell } => commands::init(shell)?,
     };
     eprintln!("");
     Ok(())

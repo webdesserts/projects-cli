@@ -1,9 +1,9 @@
+use crate::commands::list::list_projects;
+use crate::config::Config;
+use failure::Error;
+use skim::{Skim, SkimOptionsBuilder};
 use std::io::Cursor;
-use std::path::{PathBuf, Path};
-use failure::{Error};
-use skim::{SkimOptionsBuilder, Skim};
-use crate::config::{Config};
-use crate::commands::list::{list_projects};
+use std::path::{Path, PathBuf};
 
 pub fn select(config: Config) -> Result<(), Error> {
     if config.paths.is_empty() {
@@ -13,7 +13,10 @@ pub fn select(config: Config) -> Result<(), Error> {
     if projects.is_empty() {
         bail!("Your configured paths are currently empty. Try adding some projects to them");
     }
-    let names: Vec<String> = projects.iter().map(|project| format!("{} – {}", project.name, project.path.to_str().unwrap())).collect();
+    let names: Vec<String> = projects
+        .iter()
+        .map(|project| format!("{} – {}", project.name, project.path.to_str().unwrap()))
+        .collect();
     let input = names.join("\n");
     let options = SkimOptionsBuilder::default()
         .nth(Some("1"))
@@ -47,13 +50,14 @@ pub fn get_project_details(config: &Config) -> Result<Vec<ProjectDetails>, failu
         if let Some(name) = file_name {
             project_names.push(ProjectDetails { path, name });
         }
-    };
+    }
     project_names.sort();
-    return Ok(project_names)
+    return Ok(project_names);
 }
 
 fn get_file_name<P: AsRef<Path>>(path: P) -> Option<String> {
-    path.as_ref().file_name()
+    path.as_ref()
+        .file_name()
         .and_then(|os_str| os_str.to_str())
         .map(|str_ref| str_ref.to_string())
 }

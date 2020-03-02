@@ -1,8 +1,8 @@
-use std::path::{PathBuf};
-use dialoguer;
-use crate::config::{Config};
+use crate::commands::list::list_roots;
+use crate::config::Config;
 use crate::utils;
-use crate::commands::list::{list_roots};
+use dialoguer;
+use std::path::PathBuf;
 
 pub fn remove(path: Option<PathBuf>, mut config: Config) -> Result<(), failure::Error> {
     if path == None && config.paths.is_empty() {
@@ -11,12 +11,12 @@ pub fn remove(path: Option<PathBuf>, mut config: Config) -> Result<(), failure::
         println!("");
         println!("  projects track ~/code/");
         println!("");
-        return Ok(())
+        return Ok(());
     }
 
     let p = match path {
         Some(path) => path,
-        None => select_root(&config)?
+        None => select_root(&config)?,
     };
 
     let full_path = utils::normalize_path(&std::env::current_dir()?.join(p));

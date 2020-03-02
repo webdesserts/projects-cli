@@ -1,7 +1,7 @@
-use std::path::{PathBuf};
-use std::fs;
-use crate::utils;
 use crate::config::Config;
+use crate::utils;
+use std::fs;
+use std::path::PathBuf;
 
 pub fn track(path: PathBuf, mut config: Config) -> Result<(), failure::Error> {
     let full_path = utils::normalize_path(&std::env::current_dir()?.join(path));

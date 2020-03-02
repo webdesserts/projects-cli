@@ -1,9 +1,9 @@
 use crate::config::{Config, ProjectRootSet, ProjectSet};
 use crate::utils;
-use std::fs;
 use failure::Error;
+use std::fs;
 
-pub fn list(paths: bool, config: Config) -> Result<(), Error>{
+pub fn list(paths: bool, config: Config) -> Result<(), Error> {
     let paths = if paths {
         list_roots(&config)?
     } else {
@@ -14,11 +14,11 @@ pub fn list(paths: bool, config: Config) -> Result<(), Error>{
         if let Some(string) = path.to_str() {
             println!("{}", string)
         }
-    };
+    }
     Ok(())
 }
 
-pub fn list_roots(config: &Config) -> Result<ProjectRootSet, Error>{
+pub fn list_roots(config: &Config) -> Result<ProjectRootSet, Error> {
     if config.paths.is_empty() {
         bail!("You haven't configured any paths yet! Use the \"add\" command to add some.")
     } else {
@@ -35,6 +35,6 @@ pub fn list_projects(config: &Config) -> Result<ProjectSet, Error> {
                 projects.insert(path);
             }
         }
-    };
+    }
     Ok(projects)
 }

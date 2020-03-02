@@ -1,5 +1,5 @@
-use std::collections::{HashSet};
-use std::path::{PathBuf};
+use std::collections::HashSet;
+use std::path::PathBuf;
 use webdesserts_confy as confy;
 
 static APP_NAME: &str = "projects";
@@ -10,11 +10,11 @@ pub type ProjectSet = HashSet<PathBuf>;
 #[derive(Serialize, Deserialize)]
 pub struct Config {
     pub version: u8,
-    pub paths: ProjectRootSet
+    pub paths: ProjectRootSet,
 }
 
 impl Config {
-    pub fn store(&self) -> Result<(), confy::ConfyError>{
+    pub fn store(&self) -> Result<(), confy::ConfyError> {
         confy::store(APP_NAME, self)
     }
 }
@@ -23,7 +23,7 @@ impl Default for Config {
     fn default() -> Self {
         Self {
             version: 0,
-            paths: ProjectRootSet::new()
+            paths: ProjectRootSet::new(),
         }
     }
 }

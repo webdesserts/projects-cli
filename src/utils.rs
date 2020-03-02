@@ -1,5 +1,5 @@
-use std::path::{PathBuf, Path, Component};
-use std::collections::{HashSet};
+use std::collections::HashSet;
+use std::path::{Component, Path, PathBuf};
 
 pub fn normalize_path(path: &Path) -> PathBuf {
     let mut components = path.components().peekable();
@@ -9,7 +9,6 @@ pub fn normalize_path(path: &Path) -> PathBuf {
     } else {
         PathBuf::new()
     };
-
 
     for component in components {
         match component {
