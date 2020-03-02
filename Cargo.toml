@@ -1,6 +1,6 @@
 [package]
 name = "projects"
-version = "1.0.1"
+version = "1.0.2-alpha.0"
 authors = ["Michael Mullins <michael@webdesserts.com>"]
 description = "A tool for tracking, searching for, and jumping to your projects."
 repository = "https://github.com/webdesserts/projects-cli.git"
