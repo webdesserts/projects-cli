@@ -1,4 +1,5 @@
 use std::path::{PathBuf, Path, Component};
+use std::collections::{HashSet};
 
 pub fn normalize_path(path: &Path) -> PathBuf {
     let mut components = path.components().peekable();
@@ -26,4 +27,10 @@ pub fn normalize_path(path: &Path) -> PathBuf {
         }
     }
     ret
+}
+
+pub fn sort_set<T: Ord>(set: HashSet<T>) -> Vec<T> {
+    let mut vec: Vec<T> = set.into_iter().collect();
+    vec.sort();
+    vec
 }

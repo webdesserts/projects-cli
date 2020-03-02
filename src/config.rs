@@ -5,6 +5,7 @@ use webdesserts_confy as confy;
 static APP_NAME: &str = "projects";
 
 pub type ProjectRootSet = HashSet<PathBuf>;
+pub type ProjectSet = HashSet<PathBuf>;
 
 #[derive(Serialize, Deserialize)]
 pub struct Config {

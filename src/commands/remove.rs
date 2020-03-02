@@ -37,8 +37,7 @@ pub fn select_root(config: &Config) -> Result<PathBuf, failure::Error> {
     println!("Which would you like to remove?");
     println!("");
     let rootset = list_roots(config)?;
-    let mut roots: Vec<&PathBuf> = rootset.iter().collect();
-    roots.sort();
+    let roots = utils::sort_set(rootset);
     let path_strings: Vec<&str> = roots.iter().map(|root| root.to_str().unwrap()).collect();
 
     let mut selector = dialoguer::Select::new();

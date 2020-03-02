@@ -1,4 +1,5 @@
-use crate::config::{Config, ProjectRootSet};
+use crate::config::{Config, ProjectRootSet, ProjectSet};
+use crate::utils;
 use std::fs;
 use failure::Error;
 
@@ -8,7 +9,8 @@ pub fn list(paths: bool, config: Config) -> Result<(), Error>{
     } else {
         list_projects(&config)?
     };
-    for path in paths {
+    let sorted_paths = utils::sort_set(paths);
+    for path in sorted_paths {
         if let Some(string) = path.to_str() {
             println!("{}", string)
         }
@@ -24,12 +26,11 @@ pub fn list_roots(config: &Config) -> Result<ProjectRootSet, Error>{
     }
 }
 
-pub fn list_projects(config: &Config) -> Result<ProjectRootSet, Error> {
-    let mut projects = ProjectRootSet::new();
+pub fn list_projects(config: &Config) -> Result<ProjectSet, Error> {
+    let mut projects = ProjectSet::new();
     for path in &config.paths {
         for entry in fs::read_dir(&path)? {
-            let entry = entry?;
-            let path = entry.path();
+            let path = entry?.path();
             if path.is_dir() {
                 projects.insert(path);
             }
