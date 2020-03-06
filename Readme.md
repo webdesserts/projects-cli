@@ -1,4 +1,4 @@
-# Projects-cli
+# [Projects-cli](https://crates.io/crates/projects) ![crates.io](https://img.shields.io/crates/v/projects.svg)
 
 A tool for tracking, searching for, and jumping to your projects.
 
