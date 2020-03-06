@@ -58,7 +58,6 @@ enum Command {
 fn main() -> Result<(), ExitFailure> {
     let config = config::load()?;
     let app = App::from_args();
-    eprintln!("");
     match app.cmd {
         Command::Track { path } => commands::track(path, config)?,
         Command::Remove { path } => commands::remove(path, config)?,
@@ -66,6 +65,5 @@ fn main() -> Result<(), ExitFailure> {
         Command::Select => commands::select(config)?,
         Command::Init { shell, no_alias } => commands::init(shell, no_alias)?,
     };
-    eprintln!("");
     Ok(())
 }
