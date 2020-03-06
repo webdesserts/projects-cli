@@ -6,6 +6,7 @@ description = "A tool for tracking, searching, and jumping to your projects."
 repository = "https://github.com/webdesserts/projects-cli.git"
 homepage = "https://github.com/webdesserts/projects-cli"
 documentation = "https://github.com/webdesserts/projects-cli/blob/master/Readme.md"
+readme = "Readme.md"
 license = "MIT"
 edition = "2018"
 
