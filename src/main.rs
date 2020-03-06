@@ -46,8 +46,12 @@ enum Command {
     /// Prints a shell script that can be used to enable jumping to project directories
     #[structopt(name = "init")]
     Init {
+        /// What shell are you initializing in? Right now only supports "bash"
         #[structopt(default_value = "bash")]
         shell: commands::Shells,
+        /// Don't automatically define the "p" alias
+        #[structopt(long = "no-alias")]
+        no_alias: bool,
     },
 }
 
@@ -60,7 +64,7 @@ fn main() -> Result<(), ExitFailure> {
         Command::Remove { path } => commands::remove(path, config)?,
         Command::List { paths } => commands::list(paths, config)?,
         Command::Select => commands::select(config)?,
-        Command::Init { shell } => commands::init(shell)?,
+        Command::Init { shell, no_alias } => commands::init(shell, no_alias)?,
     };
     eprintln!("");
     Ok(())

@@ -8,10 +8,16 @@ use std::{env, io};
 
 const BASH_INIT: &str = include_str!("projects.bash");
 
-pub fn init(shell: Shells) -> Result<(), Error> {
+pub fn init(shell: Shells, no_alias: bool) -> Result<(), Error> {
     let cli_path = path_to_projects_cli()?;
+
     match shell {
-        Shells::Bash => println!("{}", BASH_INIT.replace("PROJECT_CLI_PATH", &cli_path)),
+        Shells::Bash => println!(
+            "{}",
+            BASH_INIT
+                .replace("PROJECT_CLI_PATH", &cli_path)
+                .replace("INIT_ALIAS", stringify_boolean(&!no_alias))
+        ),
     }
     Ok(())
 }
@@ -37,4 +43,11 @@ fn path_to_projects_cli() -> io::Result<String> {
         .to_string()
         .replace("\"", "\"'\"'\"");
     Ok(current_exe)
+}
+
+fn stringify_boolean(boolean: &bool) -> &str {
+    match boolean {
+        true => "true",
+        false => "false",
+    }
 }

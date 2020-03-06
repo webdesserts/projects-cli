@@ -5,19 +5,19 @@ A tool for tracking, searching for, and jumping to your projects.
 ## Getting Started
 
 First, you'll want to install the binary.
-```
+```bash
 cargo install projects
 ```
 If you want the ability to cd directly into your projects, you'll also want to add the init script to your `.bashrc`.
-```
+```bash
 eval "$(projects init bash)"
 ```
 Once you have everything set up, you can track projects in a given directory by using `projects track`
-```
+```bash
 projects track ~/code 
 ```
 You can then see a list of your projects with `projects list`
-```
+```bash
 projects list
 # ~/code/projects-cli
 # ~/code/webdesserts.com
@@ -25,7 +25,12 @@ projects list
 ```
 If you have the `projects init` script installed, you can then jump straight to your project's directory by just calling `projects`, which will bring up a searchable list of all your projects.
 
-`projects` will also be aliased to `p` so you can jump to your projects quickly.
+`projects` will also be aliased to `p` so you can jump to your projects quickly. If you don't want this behavior, or would like a custom alias, pass the `--no-alias` option to `projects init`
+
+```bash
+eval "$(projects init bash --no-alias)"
+alias x="projects"
+```
 
 ## Credits
 

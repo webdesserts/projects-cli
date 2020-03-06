@@ -7,5 +7,6 @@ projects() {
     eval "$src" "$@";
   fi
 };
-
-alias p="projects";
+if INIT_ALIAS; then
+  alias p="projects";
+fi;
