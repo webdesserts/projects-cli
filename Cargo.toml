@@ -2,12 +2,19 @@
 name = "projects"
 version = "1.0.2-alpha.0"
 authors = ["Michael Mullins <michael@webdesserts.com>"]
-description = "A tool for tracking, searching for, and jumping to your projects."
+description = "A tool for tracking, searching, and jumping to your projects."
 repository = "https://github.com/webdesserts/projects-cli.git"
 homepage = "https://github.com/webdesserts/projects-cli"
 documentation = "https://github.com/webdesserts/projects-cli/blob/master/Readme.md"
 license = "MIT"
 edition = "2018"
+
+keywords = [
+  "cd", "directories", "projects", "cli"
+]
+categories = [
+  "Command line utilities"
+]
 
 [dependencies]
 structopt = "^0.2"
