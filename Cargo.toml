@@ -4,7 +4,8 @@ version = "1.0.2-alpha.0"
 authors = ["Michael Mullins <michael@webdesserts.com>"]
 description = "A tool for tracking, searching for, and jumping to your projects."
 repository = "https://github.com/webdesserts/projects-cli.git"
-website = "https://github.com/webdesserts/projects-cli"
+homepage = "https://github.com/webdesserts/projects-cli"
+documentation = "https://github.com/webdesserts/projects-cli/blob/master/Readme.md"
 license = "MIT"
 edition = "2018"
 
