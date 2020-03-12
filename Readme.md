@@ -2,6 +2,8 @@
 
 A tool for tracking, searching for, and jumping to your projects.
 
+![projects-cli demo](/media/demo.gif)
+
 ## Getting Started
 
 First, you'll want to install the binary.
