@@ -26,13 +26,23 @@ pub fn list_roots(config: &Config) -> Result<ProjectRootSet, Error> {
 
 pub fn list_projects(config: &Config) -> Result<ProjectSet, Error> {
     let mut projects = ProjectSet::new();
+
     for path in &config.paths {
-        for entry in fs::read_dir(&path)? {
+        let dir = fs::read_dir(path).map_err(|error| {
+            if error.kind() == std::io::ErrorKind::NotFound {
+                format_err!("Project root not found, consider removing: \n{}", path.display())
+            } else {
+                error.into()
+            }
+        })?;
+        
+        for entry in dir {
             let path = entry?.path();
             if path.is_dir() {
                 projects.insert(path);
             }
         }
     }
+
     Ok(projects)
 }
